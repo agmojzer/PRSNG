@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+.component-content {
+	margin: 0 5px;
+
+}
+.component-title {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+.actions img {
+	
+}
+.inputcheckbox {
+	height: 2em;
+}
+#createnew {
+	vertical-align: text-top;
+}
+.lefthalf {
+	display:inline-block;
+	width:49%;
+}
+.righthalf {
+	display:inline-block;
+	width:49%;
+	text-align:right;
+}

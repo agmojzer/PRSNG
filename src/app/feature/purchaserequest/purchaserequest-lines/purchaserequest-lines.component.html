@@ -1,0 +1,59 @@
+<app-menu></app-menu>
+<div>
+</div><div class='component-content'>
+	<div>
+		<span class='component-title'>[{{title}}]</span> 
+		 <span><a routerLink='/purchaserequest/create'><img id='createnew' width='20' height='20' src='assets/add-new.png' title='Add New'></a></span>
+		| <span><a routerLink='/purchaserequest/list'>Back to list</a></span>
+	</div>
+	<p *ngIf='undefined'>Loading ...</p>
+	<div *ngIf='purchaserequest'>
+		<table class='table table-sm'>
+			<tr>
+				<th>ID:</th>
+				<th>Description:</th>
+				<th>Status:</th>
+				<th>Total:</th>
+			</tr>
+			<tr>
+				<td>{{purchaserequest.Id}}</td>
+				<td>{{purchaserequest.Description}}</td>
+				<td *ngIf='purchaserequest.Status'>{{purchaserequest.Status}}</td>
+				<td>{{purchaserequest.Total | currency}}</td>
+			</tr>
+		</table>
+		<p></p>
+		<table class="table table-sm">
+			<tr>
+				<span class='component-title'>[Line Items]</span>
+				<a routerLink='/purchaserequestlineitem/create/{{purchaserequest.Id}}'>
+						<img src='assets/add-new.png' width='20' height='20' >
+				</a>
+			</tr>
+			<tr>
+				<th>ID:</th>
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Line Total</th>
+				<th>Action</th>
+			</tr>
+			<tr *ngFor='let prline of lines'>
+				<td>{{prline.Id}}</td>
+				<td>{{prline.ProductName}}</td>
+				<td>{{prline.Quantity}}</td>
+				<td>{{prline.ProductPrice | currency}}</td>
+				<td>{{prline.ProductPrice * prline.Quantity | currency}}</td>
+			
+			<!--<td>?</td>
+			<td>?</td> -->
+				<td>
+					<a routerLink='/purchaserequestlineitem/detail/{{prline.Id}}/{{purchaserequest.Id}}'>
+							<img src='assets/detail.png'></a>
+					<a routerLink='/purchaserequestlineitem/edit/{{prline.Id}}/{{purchaserequest.Id}}'>
+							<img src='assets/edit.png'></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

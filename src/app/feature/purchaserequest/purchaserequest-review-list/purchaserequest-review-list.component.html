@@ -1,0 +1,44 @@
+<app-menu></app-menu>
+<div class='component-content'>
+	<div class=''>
+		<div class='lefthalf'>
+			<span class='component-title'>[{{title}}]</span> 
+			 <span><a routerLink='/purchaserequest/create'><img id='createnew' width='20' height='20' src='assets/add-new.png' title='Add New'></a></span>
+			<span><a routerLink='/purchaserequest/list'>Back to list</a></span> 
+		</div>
+		<div class='righthalf input-group'>
+			<span class=''>Sort:</span>
+			<select [(ngModel)]='selectedSortKey' class='custom-select text-sm-left'>
+				<option *ngFor='let sortKey of sortKeys' value='{{sortKey}}'>{{sortKey}}</option>
+			</select>
+			<span>Order:</span>
+			<select [(ngModel)]='sortDesc' class='custom-select text-sm-left'>
+				<option value='asc'>Asc</option>
+				<option value='desc'>Desc</option>
+			</select>
+		
+		</div>
+	</div>
+	<p *ngIf='!purchaserequests'>Loading ...</p>
+	<table class='table table-sm' *ngIf='purchaserequests'>
+		<tr>
+			<th>ID</th>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Total</th>
+			<th>Action</th>
+		</tr>
+		<tr *ngFor='let purchaserequest of purchaserequests | sort:selectedSortKey:sortDesc'>
+			<td>{{purchaserequest.Id}}</td>
+			<td>{{purchaserequest.Description}}</td>
+			<td>{{purchaserequest.Status.Description}}
+			<td>{{purchaserequest.Total | currency}}
+			<td class='actions'>
+				<a routerLink='/purchaserequest/review/detail/{{purchaserequest.Id}}'>
+					<img src='assets/detail.png' title='Review this item'>
+				</a>
+			</td>
+		</tr>
+	</table>
+	<p>{{searchCriteria}}</p>
+</div>

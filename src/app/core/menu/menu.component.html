@@ -1,0 +1,15 @@
+<div>
+	<div class='lefthalf'>
+		<nav>
+	<ul>
+		<li *ngFor='let menu of menuItems' [hidden] = 'menu.hidden' title='{{menu.tooltip}}'>
+			<a routerLink="{{menu.href}}">{{menu.display}}</a>
+		</li>
+	</ul>
+		</nav>
+	</div>
+
+<div class = 'righthalf'>
+	<span>{{fullname}}</span>
+</div>
+</div>

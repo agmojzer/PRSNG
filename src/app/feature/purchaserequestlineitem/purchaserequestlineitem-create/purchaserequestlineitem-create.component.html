@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+<div>
+</div><div class='component-content'>
+	<div>
+		<span class='component-title'>{{[title]}}</span> 
+		<!-- | <span><a routerLink='/purchaserequest/create'>New Product</a></span> -->
+		| <span><a routerLink='/purchaserequest/lines/{{prid}}'>Back to list</a></span>
+	</div>
+	
+
+	<div>
+		<div class='form-group row' >
+		    <label class='col-form-label col-sm-2' for="purchaserequest-Product">Product:</label>
+			<div class=' col-sm-6 select-list'>
+				<select [(ngModel)]='lineitem.ProductID' class='form-control' name='Product' id="purchaserequest-Product">
+					<option *ngFor="let product of products" [ngValue]="product.Id" >{{product.Name}}</option>
+				</select>
+			</div>
+		</div>
+	  <div class="form-group row">
+	    <label class='col-form-label col-sm-2' for="purchaserequestquantity">Quantity:</label>
+	    <input [(ngModel)]='lineitem.Quantity' name='Quantity' type="number" class="form-control col-sm-6" id="purchaserequestquantity" aria-describedby="quantityHelp" placeholder="Quantity">
+	    <small id="quantityHelp" class="form-text text-muted col-sm-2">The Quantity</small>
+	  </div>
+	  <div class='form-group'>
+	  	<button (click)='create()' class='btn btn-primary'>Create</button>
+	  </div>
+  </div>
+</div>
+
