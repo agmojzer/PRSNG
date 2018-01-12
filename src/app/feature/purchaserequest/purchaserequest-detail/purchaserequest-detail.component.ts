@@ -34,9 +34,9 @@ export class PurchaserequestDetailComponent implements OnInit {
 	
 
 	review() {
-    this.purchaserequest.Status = this.purchaserequest.Total <= 50 
+    this.purchaserequest.Status = (this.purchaserequest.Total <= 50 
                                     ? this.getStatus("APPROVED")
-                                    : this.getStatus("REVIEW");
+                                    : this.getStatus("REVIEW"));
     this.update();
   }
 
@@ -50,10 +50,10 @@ export class PurchaserequestDetailComponent implements OnInit {
 
   }
 
-  getStatus(description: string): Status {
+  getStatus(description: string): string {
     for(let status of this.stati) {
       if(status.Description === description) {
-        return status;
+        return status.Description;
       }
     }
   }
@@ -69,6 +69,10 @@ export class PurchaserequestDetailComponent implements OnInit {
   		.subscribe(purchaserequests => {this.purchaserequest = purchaserequests.length > 0 ? purchaserequests[0] : null;
   		console.log(this.purchaserequest);
   		});
+     this.StatusSvc.List()
+       .subscribe(stati => {
+        this.stati = stati;
+      })
   }
 
 }

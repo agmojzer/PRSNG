@@ -1,3 +1,56 @@
-<p>
-  purchaserequest-review-detail works!
-</p>
+<app-menu></app-menu>
+<div>
+</div><div class='component-content'>
+	<div>
+		<span class='component-title'>[{{title}}]</span> 
+	</div>
+	<p *ngIf='undefined'>Loading ...</p>
+	<div *ngIf='purchaserequest'>
+		<table class='table table-sm'>
+			<tr>
+				<th>ID:</th>
+				<th>Description:</th>
+				<th>Status:</th>
+				<th>Total:</th>
+			</tr>
+			<tr>
+				<td>{{purchaserequest.Id}}</td>
+				<td>{{purchaserequest.Description}}</td>
+				<td>{{purchaserequest.Status.Description}}</td>
+				<td>{{purchaserequest.Total | currency}}</td>
+			</tr>
+		</table>
+		<p></p>
+		<table class="table table-sm">
+			<tr>
+				<span class='component-title'>[Lines]</span>
+				<a routerLink='/purchaserequestlineitem/create/{{purchaserequest.Id}}'>
+						<img src='assets/add-new.png' width='20' height='20' >
+				</a>
+			</tr>
+			<tr>
+				<th>ID:</th>
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Line Total</th>
+				<th>Action</th>
+			</tr>
+			<tr *ngFor='let prline of purchaserequest.PurchaseRequestLineitems'>
+				<td>{{prline.Id}}</td>
+				<td>{{prline.Product.Name}}</td>
+				<td>{{prline.Quantity}}</td>
+				<td>{{prline.Product.Price | currency}}</td>
+				<td>{{prline.Product.Price * prline.Quantity | currency}}</td>
+			</tr>
+		</table>
+		<table class='table table-sm'>
+			<tr>
+				<td>
+					<button (click)="approve()" class="btn btn-success" title="Approved the purchase request">APPROVE</button>
+					<button (click)="reject()" class="btn btn-danger" title="Reject the purchase request">REJECT</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
